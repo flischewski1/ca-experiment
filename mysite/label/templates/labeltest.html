@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de">
+<head> 
+    <meta charset="utf-8">
+   
+  </head>
+  <body>
+    {% for x in data %}
+    <img src="{{ x.photo.url }}" alt="Trash" style="width:30%">
+    {% endfor %}
+    <form action="" method="post">
+      {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create" />
+  </body>
+ 
+  </script>
+</html>
