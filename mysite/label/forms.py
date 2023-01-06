@@ -1,8 +1,9 @@
 
-from label.models import Image, Label
+from label.models import SessionLabel, Image
 from django.forms import ModelForm
+from django import forms
 
 class LabelForm(ModelForm):
-    class Meta:
-        model = Label
-        fields = ['label_choice']
+   class Meta:
+        model = SessionLabel
+        fields = ['LabelTerrain_labeled', 'LabelItemType_labeled']
