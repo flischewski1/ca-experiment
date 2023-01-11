@@ -7,6 +7,17 @@
     font-family: "Poppins", sans-serif;
 }
 
+.main-text{
+    margin:auto;
+    width: 100%;
+  
+}
+
+.main-text img {
+    margin: auto;
+    display: block;
+}
+
 .container{
     --light-color:#fff; 
     
@@ -17,7 +28,13 @@
     bottom:50px;
     right: 10px;
     box-shadow: 0px 0px 5px 0px black;
+    
 }
+
+select, input[type="text"]{
+    width:100%;
+    box-sizing:border-box;
+  }
 
 .chat-header {
     height: 60px; 

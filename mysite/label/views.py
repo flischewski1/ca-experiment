@@ -11,6 +11,7 @@ def id_generator(size=16, chars=string.ascii_uppercase + string.digits):
 
 
 progress_dict = {
+    "1":5,
     "11":10,
     "111":15,
     "1111":20,
@@ -35,6 +36,19 @@ def experimentTestsuite(request):
     }
     
     if request.method == "POST": 
-        print(request.COOKIES.get('ExperimentCounter'))
+        print(request.POST)
+        progress = request.COOKIES.get("ExperimentCounter")
+        n = progress_dict[progress]
+        m = n + 5
+        data = Image.objects.all()[n:m]
+        form = LabelForm()
+        context = {
+        'data' : data,
+        'form' : form
+        }
+        return render(request, "labeltest.html", context)
 
     return render(request, "labeltest.html", context)
+
+
+    
