@@ -21,14 +21,17 @@
 
       <form action="" method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
+        <br />
         <input type="hidden" name="imageid" value="{{x.ImageID}}" />
-        <table>
+        <table class="form-table">
           {{ form.as_table }}
         </table>
-
+        <br />
         {% endfor %}
         <input type="submit" value="Next" onclick="updateCookie();" />
+        
       </form>
+      
     </div>
 
     <div class="container">

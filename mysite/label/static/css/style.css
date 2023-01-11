@@ -7,9 +7,10 @@
     font-family: "Poppins", sans-serif;
 }
 
-.main-text{
-    margin:auto;
-    width: 100%;
+.form-table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
   
 }
 
