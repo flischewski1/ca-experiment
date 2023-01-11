@@ -10,6 +10,12 @@ def id_generator(size=16, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
 
+progress_dict = {
+    "11":10,
+    "111":15,
+    "1111":20,
+    "11111":25
+}
 
 # start page (initial request)
 def index(request):
@@ -29,6 +35,6 @@ def experimentTestsuite(request):
     }
     
     if request.method == "POST": 
-        print(request.POST)
+        print(request.COOKIES.get('ExperimentCounter'))
 
     return render(request, "labeltest.html", context)
