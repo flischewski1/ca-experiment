@@ -50,5 +50,40 @@ def experimentTestsuite(request):
 
     return render(request, "labeltest.html", context)
 
+def standarfLogic(n, request):
+    
+    data = Image.objects.all()[0:5]
+    form = LabelForm()
+    context = {
+        'data' : data,
+        'form' : form
+    }
+    
+    if request.method == "POST": 
+        print(request.POST)
+        progress = request.COOKIES.get("ExperimentCounter")
+        n = progress_dict[progress]
+        m = n + 5
+        data = Image.objects.all()[n:m]
+        form = LabelForm()
+        context = {
+        'data' : data,
+        'form' : form
+        }
+        return render(request, f"group{n}.html", context)
+
+    return render(request,f"group{n}.html", context)
 
     
+def group1(request): 
+   return standarfLogic(1,request)
+
+
+def group2(request): 
+    return standarfLogic(2,request)
+
+def group3(request): 
+    return standarfLogic(3,request)
+
+def group4(request): 
+    return standarfLogic(4,request)
