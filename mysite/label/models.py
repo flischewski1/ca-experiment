@@ -33,8 +33,8 @@ class Image(models.Model):
 class ImageLabel(models.Model):
     ImageID = models.ForeignKey(Image,primary_key=True, on_delete=models.CASCADE)
     LabelMaterial = models.CharField(max_length=500, choices=label_choices_material)
-    LabelTerrain = models.CharField(max_length=500, choices=label_choices_terrain)
-    LabelItemType = models.CharField(max_length=500, choices=label_choices_items)
+    LabelTerrain = models.CharField('Terrain',max_length=500, choices=label_choices_terrain)
+    LabelItemType = models.CharField('Gegenstand',max_length=500, choices=label_choices_items)
 
 class Session(models.Model): 
     SessionID = models.BigAutoField(primary_key=True)

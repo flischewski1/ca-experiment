@@ -67,8 +67,7 @@ select, input[type="text"]{
     flex-direction: column;
     padding: 8px 10px;
     align-items: flex-end;
-    overflow-y: auto;
-    overflow: hidden;
+    overflow-y: scroll;
     position: relative;
 }
 
@@ -81,6 +80,7 @@ select, input[type="text"]{
 
 .input-sec {
     flex: 9;
+ 
 }
 
 .send {
@@ -102,14 +102,14 @@ select, input[type="text"]{
 .user-message {
     padding: 8px; 
     background: #ccc;
-    margin: 5px;
     width: max-content;
     border-radius: 10px 10px 3px 10px;
+    margin:5px; 
 }
 
 .chat-body .loading {
     display: flex;
-    position: absolute;
+    position: relative;
     bottom: 5%; 
     left:2%; 
     z-index:999; 
@@ -124,10 +124,13 @@ select, input[type="text"]{
     border-radius: 50%;
 }
 
+.chatbot-message, .loading {
+    align-self: flex-start; 
+}
+
 .chatbot-message
 {
  background: turquoise; 
- align-self: flex-start; 
  border-radius: 10px 10px 3px 10px;
 }
 

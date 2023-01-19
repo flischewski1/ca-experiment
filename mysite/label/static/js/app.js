@@ -16,8 +16,9 @@ const renderUserMessage = () => {
     const userInput = txtinput.value ; 
     renderMessageEle(userInput, "user");
     txtinput.value = "";
-    setScrollPosition();
+  
     toggleLoading(false);
+    setScrollPosition();
      
     setTimeout(() => {
         
@@ -38,7 +39,7 @@ const renderMessageEle = (txt, type) => {
     const txtNode = document.createTextNode(txt);
     messageEle.classList.add(className); 
     messageEle.append(txtNode); 
-    chatBody.append(messageEle);
+    chatBody.insertBefore(messageEle, loadingEle);
 
 }
 
@@ -60,6 +61,7 @@ const setScrollPosition = () => {
 }
 
 const toggleLoading = (show) => loadingEle.classList.toggle("hide", show)
+
 
 
 // Cookie Progress

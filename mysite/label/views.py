@@ -50,7 +50,7 @@ def experimentTestsuite(request):
 
     return render(request, "labeltest.html", context)
 
-def standarfLogic(n, request):
+def standardLogic(n, request):
     
     data = Image.objects.all()[0:5]
     form = LabelForm()
@@ -76,14 +76,14 @@ def standarfLogic(n, request):
 
     
 def group1(request): 
-   return standarfLogic(1,request)
+   return standardLogic(1,request)
 
 
 def group2(request): 
-    return standarfLogic(2,request)
+    return standardLogic(2,request)
 
 def group3(request): 
-    return standarfLogic(3,request)
+    return standardLogic(3,request)
 
 def group4(request): 
-    return standarfLogic(4,request)
+    return standardLogic(4,request)
