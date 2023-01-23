@@ -4,18 +4,8 @@ const send = document.querySelector(".send");
 const loadingEle =document.querySelector(".loading");
 
 
-var pageArray = [1,2,3,4]
-
-function getRandomGroup () {
-    const random = Math.floor(Math.random() * pageArray.length);
-    return pageArray[random];
-
-}
 
 
-// Change URL !
-var myURL = 'http://127.0.0.1:8000/label/' + getRandomGroup();
-document.getElementById('myUniqueLinkId').href = myURL;
 
 
 // Chatbot functions 
@@ -28,6 +18,7 @@ txtinput.addEventListener("keyup", (event) => {
 });
 
 const renderUserMessage = () => {
+    console.log("Test")
     const userInput = txtinput.value ; 
     renderMessageEle(userInput, "user");
     txtinput.value = "";
@@ -66,7 +57,7 @@ const renderChatbotResponse = (userInput) => {
 // dialogeflow here:
 
 const getChatbotResponse = (userInput) => {
-    return responseObj[userInput] == undefined?"Please try again":responseObj[userInput];
+    return responseObj[userInput] == undefined?"Ich verstehe dich leider nicht":responseObj[userInput];
 }
 
 const setScrollPosition = () => {

@@ -74,7 +74,33 @@ def standardLogic(n, request):
 
     return render(request,f"group{n}.html", context)
 
-    
+def tutorial(request,n):
+    data = Image.objects.all()[30:31]
+    form = LabelForm()
+    context = {
+        'data' : data,
+        'form' : form
+    }
+    return render(request, f"group{n}Tutorial.html", context)
+
+
+# tutorial endpoint
+
+def tutorial1(request):
+    return tutorial(request,1)
+
+def tutorial2(request):
+    return tutorial(request,2)
+
+def tutorial3(request):
+    return tutorial(request,3)
+
+def tutorial4(request):
+    return tutorial(request,4)
+
+
+ # task endpoint
+   
 def group1(request): 
    return standardLogic(1,request)
 

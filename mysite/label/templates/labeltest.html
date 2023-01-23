@@ -8,18 +8,13 @@
     <script src="{% static 'js/response.js' %}" defer></script>
   </head>
   <body>
-    <input
-      id="clickMe"
-      type="button"
-      value="clickme"
-      onclick="updateCookie();"
-    />
+   
 
     <div class="main-text">
       {% for x in data %}
       <img src="{{ x.photo.url }}" alt="Trash" style="width: 30%" />
 
-      <form action="" method="post" onkeydown="return event.key != 'Enter';">
+      <form id="labelform" action="" method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <br />
         <input type="hidden" name="imageid" value="{{x.ImageID}}" />
@@ -28,7 +23,7 @@
         </table>
         <br />
         {% endfor %}
-        <input type="submit" value="Next" onclick="updateCookie();" />
+        
         
       </form>
       
@@ -37,20 +32,21 @@
     <div class="container">
       <div class="chat-header">
         <div class="logo">
-          <img src="{% static 'images/Hermine.png' %}" alt="humanlike" />
+          <img src="{% static 'images/Hermine.jpg' %}" alt="humanlike" />
         </div>
 
         <div class="title">Laura</div>
       </div>
       <div class="chat-body">
         
-        <div class="chatbot-message">Hello</div>
+        <div class="chatbot-message"><input type="submit" form="labelform" value="Next" onclick="updateCookie();" /></div>
         <div class="loading hide">
-          Laura is typing
+          Laura schreibt
           <div class="circle circle-1"></div>
           <div class="circle circle-2"></div>
           <div class="circle circle-3"></div>
         </div>
+        
       </div>
 
       
@@ -66,5 +62,4 @@
       </div>
     </div>
   </body>
-  <script></script>
 </html>

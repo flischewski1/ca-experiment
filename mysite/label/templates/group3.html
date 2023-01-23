@@ -1,59 +1,64 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="de">
-<head> 
-    <meta charset="utf-8">
-   <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
-   <script src="{% static 'js/app.js' %}" defer> </script>
-   <script src="{% static 'js/response.js' %}" defer> </script>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/app.js' %}" defer></script>
+    <script src="{% static 'js/response.js' %}" defer></script>
   </head>
   <body>
+  
 
-    <div class="main-text"> 
-    {% for x in data %}
-    <img src="{{ x.photo.url }}" alt="Trash" style="width:30%">
-    
-    <form action="" method="post" onkeydown="return event.key != 'Enter';">
-      {% csrf_token %}
-      <input type="hidden" name='imageid' value="{{x.ImageID}}">
-        {{ form.as_p }}
-        <input type="submit" value="Create" /> </form>
+    <div class="main-text">
+      {% for x in data %}
+      <img src="{{ x.photo.url }}" alt="Trash" style="width: 30%" />
+
+      <form action="" method="post" onkeydown="return event.key != 'Enter';">
+        {% csrf_token %}
+        <br />
+        <input type="hidden" name="imageid" value="{{x.ImageID}}" />
+        <table class="form-table">
+          {{ form.as_table }}
+        </table>
+        <br />
         {% endfor %}
-
-      </div>
-
-      <div class="container">
-        <div class="chat-header">
-        <div class="logo">
-          <img src="{% static 'images/Hermine.png' %}" alt="humanlike" />
-        </div>
+        <input type="submit" value="Next" onclick="updateCookie();" />
+        
+      </form>
       
-        <div class="title"> Hermine </div>
+    </div>
+
+    <div class="container">
+      <div class="chat-header">
+        <div class="logo">
+          <img src="{% static 'images/Hermine.jpg' %}" alt="humanlike" />
+        </div>
+
+        <div class="title">Laura</div>
       </div>
-        <div class="chat-body">
-        <div class="loading hide" {overflow-x:hidden;}>
+      <div class="chat-body">
+        
+        <div class="chatbot-message">Hello</div>
+        <div class="loading hide">
+          Laura schreibt
           <div class="circle circle-1"></div>
           <div class="circle circle-2"></div>
           <div class="circle circle-3"></div>
         </div>
-        <div class="chatbot-message"> Hello</div>
-        </div>
-        <div class="chat-input">
+      </div>
+
+      
+      <div class="chat-input">
+        
         <div class="input-sec">
-          <input type="text" id="txtinput" placeholder="Nachricht eingeben">
+          
+          <input type="text" id="txtinput" placeholder="Nachricht eingeben" />
         </div>
-          <div class="send">
-            
-            <img src="{% static 'images/send.svg' %}" alt="send" />
-          </div>
-        
-        
+        <div class="send">
+          <img src="{% static 'images/send.svg' %}" alt="send" />
+        </div>
       </div>
-      </div>
-
+    </div>
   </body>
- <script> 
-
-
-</script>
 </html>
