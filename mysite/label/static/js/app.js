@@ -4,8 +4,24 @@ const send = document.querySelector(".send");
 const loadingEle =document.querySelector(".loading");
 
 
+ 
 
+// Messages
+const startmessagelauraWelcome =  "Hallo! Ich bin Laura und helfe dir dich in dieser Studie zurecht zu finden :)"
+const messageTutorial = 'In dieser Studie ist es deine Aufgabe die Bilder zu klassifizieren. Wähle dazu die passende Option in den Kategorien Terrain und Gegenstand (Art des Mülls) aus und klicke anschließend auf "Weiter".'
 
+const messageLauraStart = "Du hast die Aufgabe gestartet! Klassifiziere jetzt bitte die ersten 5 Bilder :)"
+const messageBotStart = "Die Aufgabe ist gestartet. Bitte klassifiziere die Bilder."
+
+const messageLauraProgressstart = "Du hast bereits "
+const messageLauraProgressend = "/30 Bilder geschafft, weiter so!"
+const messageLauraProgres = "Klassifiziere jetzt bitte die nächsten 5 Bilder :)"
+
+const messageLauraNonProgress = "Diese Bilder wären geschafft. Klassifiziere jetzt bitte die nächsten 5 Bilder :)"
+
+const messageLBotProgressstart = ""
+const messageLBotProgressend = ""
+const messageBotNonProgress = ""
 
 
 // Chatbot functions 
@@ -18,7 +34,7 @@ txtinput.addEventListener("keyup", (event) => {
 });
 
 const renderUserMessage = () => {
-    console.log("Test")
+
     const userInput = txtinput.value ; 
     renderMessageEle(userInput, "user");
     txtinput.value = "";
@@ -54,6 +70,7 @@ const renderChatbotResponse = (userInput) => {
     renderMessageEle(res);
 }
 
+
 // dialogeflow here:
 
 const getChatbotResponse = (userInput) => {
@@ -68,54 +85,109 @@ const setScrollPosition = () => {
 
 const toggleLoading = (show) => loadingEle.classList.toggle("hide", show)
 
-
-
-// Cookie Progress
-
-function createCookie(name,value,days) {
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 *1000));
-        var expires = "; expires=" + date.toGMTString();
-    } else {
-        var expires = "";
+function renderChatbotmessage(id) {
+   
+    toggleLoading(false);
+    setScrollPosition();
+    setTimeout(() => {   
+        messagetree(id)
+        setScrollPosition();
+        toggleLoading(true);
     }
-    document.cookie = name + "=" + value + expires + "; path=/";
+    , 1800);
 }
 
-function readCookie(name) {
-    var nameEQ = name + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1,c.length);
-        }
-        if (c.indexOf(nameEQ) == 0) {
-            return c.substring(nameEQ.length,c.length);
-        }
-    }
-    return null;
+function renderNext() {
+    var x = document.createElement("INPUT");
+    x.setAttribute("type", "submit");
+    x.setAttribute("form", "labelform");
+    x.setAttribute("value", "Weiter");
+    x.setAttribute("class", "chatbot-message");
+    chatBody.append(x); 
+
 }
 
 
-
-// Update Function 
-
-const setCookie = () => {
-    createCookie("ExperimentCounter",1,7)
+function messagetree(id) {
+    menuMessages[id]()
 }
 
-const updateCookie = () => {
+function messagetree(id) {
+    menuMessages[id]()
+}
+
+var menuMessages = {};
+menuMessages["TutorialHumanLike"] = tutorialHumanLike;
+menuMessages["TutorialBot"] = tutorialBot;
+menuMessages["HumanLikeStart"] = humanLikeStart;
+menuMessages["BotStart"] = botStart;
+
+var menuMessagesProgress = {};
+menuMessages["ProgressHumanLike"] = progressHumanLike;
+
+// dialogflow functions
+
+// guide
+function tutorialHumanLike() {
+    renderMessageEle(startmessagelauraWelcome, "Bot");
+    renderMessageEle(messageTutorial, "Bot");
+    renderNext();
+}
+
+function tutorialBot() {
+    renderMessageEle(messageTutorial, "Bot");
+    renderNext();
+}
+
+function humanLikeStart(){
+    renderMessageEle(messageLauraStart, "Bot");
+    renderNext();
+}
+
+function botStart(){
+    renderMessageEle(messageBotStart, "Bot");
+    renderNext();
+}
+
+
+
+function progressHumanLike() {
+    n = cookieStatus.length * 5
+    message = messageLauraProgressstart + n + messageLauraProgressend
+    renderMessageEle(message, "Bot");
+    renderNext();
+}
+
+function progressBot(n) {
+
+}
+
+
+// progress monitoring
+
+function progressMessage(treatmentHuman, treatmentProgress) {
     cookieStatus = readCookie("ExperimentCounter")
     if(cookieStatus == null) {
-        setCookie()
-        console.log(readCookie("ExperimentCounter"))
+        if(treatmentHuman){
+            renderChatbotmessage("HumanLikeStart")
+        }
+        else {
+            renderChatbotmessage("BotStart")
+        }
+        // message 1 human like or bot
     }
     else {
-        cookieStatus = readCookie("ExperimentCounter")
-        newCookieValue = cookieStatus + 1 
-        createCookie("ExperimentCounter",newCookieValue,7)
-        console.log(readCookie("ExperimentCounter"))
+        
+
+        if(treatmentHuman && treatmentProgress) {
+            renderChatbotmessage("ProgressHumanLike")
+        }
+    // progress messages 
+
+    // no progress messages
+
+
     }
+    
 }
+    

@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/app.js' %}" defer></script>
-    <script src="{% static 'js/response.js' %}" defer></script>
+    <script src="{% static 'js/cookie.js' %}" defer></script>
   </head>
-  <body>
+  <body onload = "renderChatbotmessage('test');">
    
 
     <div class="main-text">
@@ -39,7 +39,6 @@
       </div>
       <div class="chat-body">
         
-        <div class="chatbot-message"><input type="submit" form="labelform" value="Next" onclick="updateCookie();" /></div>
         <div class="loading hide">
           Laura schreibt
           <div class="circle circle-1"></div>

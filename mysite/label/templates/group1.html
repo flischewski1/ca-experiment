@@ -7,15 +7,14 @@
     <script src="{% static 'js/app.js' %}" defer></script>
     <script src="{% static 'js/response.js' %}" defer></script>
   </head>
-  <body>
- 
+  <body onload="progressMessage(true, true);">
   
 
     <div class="main-text">
       {% for x in data %}
       <img src="{{ x.photo.url }}" alt="Trash" style="width: 30%" />
 
-      <form action="" method="post" onkeydown="return event.key != 'Enter';">
+      <form action="" id ="labelform" onsubmit="updateCookie();" method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <br />
         <input type="hidden" name="imageid" value="{{x.ImageID}}" />
@@ -33,16 +32,15 @@
     <div class="container">
       <div class="chat-header">
         <div class="logo">
-          <img src="{% static 'images/robot.jpg' %}" alt="humanlike" />
+          <img src="{% static 'images/Hermine.jpg' %}" alt="humanlike" />
         </div>
 
-        <div class="title">Assistent</div>
+        <div class="title">Laura</div>
       </div>
       <div class="chat-body">
         
-        <div class="chatbot-message"></div>
         <div class="loading hide">
-     
+          Laura schreibt
           <div class="circle circle-1"></div>
           <div class="circle circle-2"></div>
           <div class="circle circle-3"></div>

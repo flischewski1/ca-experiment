@@ -61,18 +61,23 @@ def standardLogic(n, request):
     
     if request.method == "POST": 
         print(request.POST)
-        progress = request.COOKIES.get("ExperimentCounter")
-        n = progress_dict[progress]
-        m = n + 5
-        data = Image.objects.all()[n:m]
-        form = LabelForm()
-        context = {
-        'data' : data,
-        'form' : form
-        }
-        return render(request, f"group{n}.html", context)
+        try:
+            progress = request.COOKIES.get("ExperimentCounter")
+            i = progress_dict[progress]
+            m = i + 5
+            data = Image.objects.all()[i:m]
+            form = LabelForm()
+            context = {
+            'data' : data,
+            'form' : form
+            }
+            return render(request, f"group{n}.html", context)
+        except:
+            return render(request,f"group{n}.html", context)
+            
+        
 
-    return render(request,f"group{n}.html", context)
+    
 
 def tutorial(request,n):
     data = Image.objects.all()[30:31]
