@@ -166,3 +166,7 @@ select, input[type="text"]{
 .hide {
     display: none !important;
 }
+
+input[type=submit] {
+    cursor:pointer;
+}

@@ -14,14 +14,15 @@ const messageLauraStart = "Du hast die Aufgabe gestartet! Klassifiziere jetzt bi
 const messageBotStart = "Die Aufgabe ist gestartet. Bitte klassifiziere die Bilder."
 
 const messageLauraProgressstart = "Du hast bereits "
-const messageLauraProgressend = "/30 Bilder geschafft, weiter so!"
+const messageLauraProgressend = "/30 Bilder geschafft."
 const messageLauraProgres = "Klassifiziere jetzt bitte die nächsten 5 Bilder :)"
 
 const messageLauraNonProgress = "Diese Bilder wären geschafft. Klassifiziere jetzt bitte die nächsten 5 Bilder :)"
 
-const messageLBotProgressstart = ""
-const messageLBotProgressend = ""
-const messageBotNonProgress = ""
+const messageLBotProgressstart = "Fortschritt: "
+const messageLBotProgressend = "/30 Bilder"
+const messageLBotProgress = "Klassifiziere jetzt bitte die nächsten 5 Bilder."
+const messageBotNonProgress = "Klassifiziere jetzt bitte die nächsten 5 Bilder."   
 
 
 // Chatbot functions 
@@ -121,9 +122,10 @@ menuMessages["TutorialHumanLike"] = tutorialHumanLike;
 menuMessages["TutorialBot"] = tutorialBot;
 menuMessages["HumanLikeStart"] = humanLikeStart;
 menuMessages["BotStart"] = botStart;
-
-var menuMessagesProgress = {};
 menuMessages["ProgressHumanLike"] = progressHumanLike;
+menuMessages["ProgressBot"] = progressBot; nonProgressHumanLike
+menuMessages["NonProgressHumanLike"] = nonProgressHumanLike;
+menuMessages["NonProgressBot"] = nonProgressBot;
 
 // dialogflow functions
 
@@ -155,13 +157,31 @@ function progressHumanLike() {
     n = cookieStatus.length * 5
     message = messageLauraProgressstart + n + messageLauraProgressend
     renderMessageEle(message, "Bot");
+    renderMessageEle(messageLauraProgres,"Bot");
     renderNext();
 }
 
-function progressBot(n) {
+function progressBot() {
+    n = cookieStatus.length * 5
+    message = messageLBotProgressstart + n + messageLBotProgressend
+    renderMessageEle(message, "Bot");
+    renderMessageEle(messageLBotProgress,"Bot");
+    renderNext();
 
 }
 
+function nonProgressHumanLike() {
+
+    renderMessageEle(messageLauraNonProgress,"Bot");
+    renderNext();
+}
+
+function nonProgressBot() {
+
+    renderMessageEle(messageBotNonProgress,"Bot");
+    renderNext();
+
+}
 
 // progress monitoring
 
@@ -177,15 +197,24 @@ function progressMessage(treatmentHuman, treatmentProgress) {
         // message 1 human like or bot
     }
     else {
-        
+         // progress messages 
 
         if(treatmentHuman && treatmentProgress) {
             renderChatbotmessage("ProgressHumanLike")
         }
-    // progress messages 
+
+        if(treatmentHuman === false && treatmentProgress) {
+            renderChatbotmessage("ProgressBot")
+        }
 
     // no progress messages
+        if(treatmentHuman && treatmentProgress === false) {
+        renderChatbotmessage("NonProgressHumanLike")
+        }
 
+        if(treatmentHuman === false && treatmentProgress === false) {
+        renderChatbotmessage("NonProgressBot")
+        }
 
     }
     

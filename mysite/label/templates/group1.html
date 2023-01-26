@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/app.js' %}" defer></script>
     <script src="{% static 'js/response.js' %}" defer></script>
+    <script src="{% static 'js/cookieMonitoring.js' %}" defer></script>
   </head>
   <body onload="progressMessage(true, true);">
   
@@ -23,7 +24,7 @@
         </table>
         <br />
         {% endfor %}
-        <input type="submit" value="Next" onclick="updateCookie();" />
+       
         
       </form>
       
