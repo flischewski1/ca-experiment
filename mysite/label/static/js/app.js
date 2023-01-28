@@ -154,6 +154,7 @@ function botStart(){
 
 
 function progressHumanLike() {
+    cookieStatus = readCookie("ExperimentCounter")
     n = cookieStatus.length * 5
     message = messageLauraProgressstart + n + messageLauraProgressend
     renderMessageEle(message, "Bot");
@@ -162,6 +163,7 @@ function progressHumanLike() {
 }
 
 function progressBot() {
+    cookieStatus = readCookie("ExperimentCounter")
     n = cookieStatus.length * 5
     message = messageLBotProgressstart + n + messageLBotProgressend
     renderMessageEle(message, "Bot");

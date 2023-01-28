@@ -31,9 +31,35 @@ function readCookie(name) {
     return null;
 }
 
+//
 
 
-// Update Function 
+function appendCookie(name, value) {
+    cookieValue = JSON.stringify(value)
+    cookieStatus = readCookie(name)
+    if(cookieStatus == null) {
+        createCookie(name,cookieValue,7)
+    }
+    else {
+        createCookie(name,cookieValue,7)
+    }
+}
+
+function getTrackingCookie(name) {
+    value = readCookie(name)
+    if(value === null){
+        empty = {};
+        return empty
+    }
+    else {
+        valueJSON = JSON.parse(value);
+        return valueJSON
+
+    }
+}
+
+
+// Update Function for task progress 
 
 const setCookie = () => {
     createCookie("ExperimentCounter",1,7)
@@ -43,7 +69,6 @@ const updateCookie = () => {
     cookieStatus = readCookie("ExperimentCounter")
     if(cookieStatus == null) {
         setCookie()
-        console.log(readCookie("ExperimentCounter"))
     }
     else {
         cookieStatus = readCookie("ExperimentCounter")
@@ -53,3 +78,5 @@ const updateCookie = () => {
     }
 }
 
+
+// Generate Link 

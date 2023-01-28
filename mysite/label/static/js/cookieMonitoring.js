@@ -1,33 +1,82 @@
-let taskTimestampps = {};
-let taskResults = {};
-
-function initExperiment(sessionId, groupId) {
-    // initialize experiment 
+let taskTimestamps = {};
+let taskResultsItems = {};
+let taskResultsTerrain = {};
+const counterMask = {
+  "0" : "Timestamp1",
+  "1": "Timestamp2",
+  "11": "Timestamp3",
+  "111" : "Timestamp4", 
+  "1111" : "Timestamp5", 
+  "11111" : "Timestamp6", 
+  "111111" : "Timestamp7"
 }
 
-function setTimestamp(currentResults , n) {
+function setInitTimestamp() {
     let currentDate = new Date(); 
-    currentResults[n] = currentDate; 
+    taskTimestamps["0"] = currentDate
+    value = JSON.stringify(taskTimestamps)
+    createCookie("timestamps",value,7 )
 }
 
-function setSolution(imageid, labelterrain, labelitem) {
-    // insert form content
-}
+
 
 // get data from the labelform
 
 function getData(form) {
     var formData = new FormData(form);
-    console.log(Object.fromEntries(formData.entries()));
-    // iterate through entries...
+    itemname = "LabelItemType_labeled";
+    terrainname = "LabelTerrain_labeled";
+    taskResultsItems = getTrackingCookie(itemname);
+    taskResultsTerrain = getTrackingCookie(terrainname);
+    taskTimestamps = getTrackingCookie("timestamps");
+    
     for (var pair of formData.entries()) {
-      console.log(pair[0] + ": " + pair[1]);
+
+      if(pair[0] === "imageid"){
+        imageid=pair[1]
+
+      }
+
+      if(pair[0] === itemname){
+        taskResultsItems["Item"+imageid] = pair[1]
+      }
+      if(pair[0] === terrainname){
+        taskResultsTerrain["Terrain"+imageid] = pair[1]
+      }
+      
+    }
+    cookieStatus = readCookie("ExperimentCounter");
+    let currentDate = new Date(); 
+    taskTimestamps[counterMask[cookieStatus]] = currentDate;
+    
+    appendCookie(terrainname,taskResultsTerrain);
+    appendCookie(itemname, taskResultsItems);
+    appendCookie("timestamps",taskTimestamps);
+
+    if(cookieStatus === "111111"){
+      const group = readCookie("group"); 
+      // UPDATE LINK
+      let surveylink = "https://bildungsportal.sachsen.de/umfragen/limesurvey/index.php/171198?newtest=Y&lang=de"
+      let linkString = "&Group=" + '"' + group + '"'; 
+      linkString = iterateCookie(taskResultsTerrain, linkString);
+      linkString = iterateCookie(taskResultsItems, linkString);
+      linkString = iterateCookie(taskTimestamps, linkString);
+      surveylink = surveylink+ linkString;
+      createCookie("survey-link", surveylink, 7)
+      
     }
     
-  
+   
   }
   
   document.getElementById("labelform").addEventListener("submit", function (e) {
     getData(e.target);
   });
+
+function iterateCookie(json, link) {
+  for (key in json) {
+    link = link + '&' + key + '="' + json[key] + '"'; 
+  }
+  return link
+}
 

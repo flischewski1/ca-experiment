@@ -28,15 +28,9 @@ def index(request):
     return response
 
 def experimentTestsuite(request): 
-    data = Image.objects.all()[0:5]
-    form = LabelForm()
-    context = {
-        'data' : data,
-        'form' : form
-    }
+
     
     if request.method == "POST": 
-        print(request.POST)
         progress = request.COOKIES.get("ExperimentCounter")
         n = progress_dict[progress]
         m = n + 5
@@ -48,7 +42,6 @@ def experimentTestsuite(request):
         }
         return render(request, "labeltest.html", context)
 
-    return render(request, "labeltest.html", context)
 
 def standardLogic(n, request):
     
@@ -60,9 +53,10 @@ def standardLogic(n, request):
     }
     
     if request.method == "POST": 
-        print(request.POST)
         try:
             progress = request.COOKIES.get("ExperimentCounter")
+            if(progress == "111111"): 
+                return render(request, "end.html")
             i = progress_dict[progress]
             m = i + 5
             data = Image.objects.all()[i:m]
@@ -71,6 +65,7 @@ def standardLogic(n, request):
             'data' : data,
             'form' : form
             }
+            
             return render(request, f"group{n}.html", context)
         except:
             return render(request,f"group{n}.html", context)

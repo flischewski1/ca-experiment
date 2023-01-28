@@ -5,7 +5,8 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/app.js' %}" defer></script>
-    <script src="{% static 'js/cookie.js' %}" defer></script>
+    <script src="{% static 'js/cookieMonitoring.js' %}" defer></script>
+    <script src="{% static 'js/response.js' %}" defer></script>
   </head>
   <body onload = "renderChatbotmessage('TutorialHumanLike');">
     
@@ -14,7 +15,7 @@
       {% for x in data %}
       <img src="{{ x.photo.url }}" alt="Trash" style="width: 30%" />
 
-      <form action="/label/1/" onsubmit="updateCookie();" id ="labelform" method="post" onkeydown="return event.key != 'Enter';">
+      <form action="/label/1/" onsubmit="setInitTimestamp();" id ="labelform" method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <br />
         <input type="hidden" name="imageid" value="{{x.ImageID}}" />
