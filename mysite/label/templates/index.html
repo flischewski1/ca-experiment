@@ -5,11 +5,51 @@
   <head> 
     <link rel="stylesheet" href="{% static 'css/style.css' %}" /> 
     <script src="{% static 'js/start.js' %}" defer> </script>
-    Tutorial
   </head>
   
   <body>
-    <a href="#" id ="myUniqueLinkId" >go</a>
+    <br>
+  <div class="startdiv"> 
+    <h2>Studie</h2>
+    <br>
+    <br>
+  
+  <p><h4>Herzlich willkommen zu unserer Studie.</h4></p>
+  
+      <p>
+          Damit künstliche Intelligenz genutzt werden kann, um Objekte auf Bildern bzw. in Videos zu erkennen, muss ihr ein klassifizierter Datensatz bereitgestellt werden. 
+          Daher bitten wir Sie, im Folgenden <b>Müllgegenstände</b> und dessen <b>Terrain (Umgebung)</b>  zu klassifizieren. 
+          <br>
+          <br>
+          <br>
+          Im Anschluss an die Klassifizierung bitten wir Sie, an einer <b>anonymisierten Umfrage</b> teilzunehmen, um Ihre Nutzungserfahrung zu bewerten. 
+          <br>
+          <br>
+
+      <form>
+          <input type="checkbox" onclick="checkCheckbox();" name="cookies"> Ich akzeptiere die Benutzung von Cookies.</input>
+          <br>
+          <input type="checkbox" onclick="checkCheckbox();" name="datenschutz"> Ich habe die <a href="/label/gdpr">Datenschutzerklärung</a> gelesen und bin einverstanden.</input>
+          <br>
+          <input type="checkbox"onclick="checkCheckbox();"  name="forms"> Ich nehme zur Kenntnis, dass der Umfragedienst LimeSurvey für die Durchführung der Umfrage genutzt wird.</input>
+      </form>
+
+      <br>
+      <br>
+      <a href="#" id ="myUniqueLinkId" > <button type="button" id="continue" disabled>Zur Aufgabe</button></a>
+
+
+    </div>
   </body>
+  <script>
+  function checkCheckbox(){
+   if(document.getElementsByName("cookies")[0].checked && document.getElementsByName("datenschutz")[0].checked && document.getElementsByName("forms")[0].checked){
+    document.getElementById("continue").disabled = false;
+   }else{
+    document.getElementById("continue").disabled = true;
+  }
+} 
+  </script>
+
 
 </html>

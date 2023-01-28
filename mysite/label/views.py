@@ -113,3 +113,6 @@ def group3(request):
 
 def group4(request): 
     return standardLogic(4,request)
+
+def gdpr(request): 
+    return render(request,"gdpr.html")

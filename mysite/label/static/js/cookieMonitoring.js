@@ -45,10 +45,10 @@ function getData(form) {
       }
       
     }
-    cookieStatus = readCookie("ExperimentCounter");
-    let currentDate = new Date(); 
-    taskTimestamps[counterMask[cookieStatus]] = currentDate;
     
+    let currentDate = new Date(); 
+    taskTimestamps[counterMask[readCookie("ExperimentCounter")]] = currentDate;
+    let cookieStatus = readCookie("ExperimentCounter")
     appendCookie(terrainname,taskResultsTerrain);
     appendCookie(itemname, taskResultsItems);
     appendCookie("timestamps",taskTimestamps);

@@ -12,5 +12,6 @@ urlpatterns = [
     path('guide1/', views.tutorial1, name='tutorial1'),
     path('guide2/', views.tutorial2, name='tutorial2') ,
     path('guide3/', views.tutorial3, name='tutorial3')  ,
-    path('guide4/', views.tutorial4, name='tutorial4')    
+    path('guide4/', views.tutorial4, name='tutorial4'),
+    path('gdpr/', views.gdpr, name='gdpr')   
 ]
