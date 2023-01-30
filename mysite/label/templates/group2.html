@@ -6,9 +6,11 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/app.js' %}" defer></script>
     <script src="{% static 'js/response.js' %}" defer></script>
+    <script src="{% static 'js/cookieMonitoring.js' %}" defer></script>
   </head>
   <body onload = "progressMessage(true, false);">
     
+  
 
     <div class="main-text">
       {% for x in data %}
@@ -23,12 +25,11 @@
         </table>
         <br />
         {% endfor %}
-
+       
         
       </form>
       
     </div>
-
     <div class="container">
       <div class="chat-header">
         <div class="logo">

@@ -7,8 +7,7 @@ const counterMask = {
   "11": "Timestamp3",
   "111" : "Timestamp4", 
   "1111" : "Timestamp5", 
-  "11111" : "Timestamp6", 
-  "111111" : "Timestamp7"
+  "11111" : "Timestamp6"
 }
 
 function setInitTimestamp() {
@@ -53,7 +52,7 @@ function getData(form) {
     appendCookie(itemname, taskResultsItems);
     appendCookie("timestamps",taskTimestamps);
 
-    if(cookieStatus === "111111"){
+    if(cookieStatus === "11111"){
       const group = readCookie("group"); 
       // UPDATE LINK
       let surveylink = "https://bildungsportal.sachsen.de/umfragen/limesurvey/index.php/171198?newtest=Y&lang=de"

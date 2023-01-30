@@ -14,13 +14,13 @@ const messageLauraStart = "Du hast die Aufgabe gestartet! Klassifiziere jetzt bi
 const messageBotStart = "Die Aufgabe ist gestartet. Bitte klassifiziere die Bilder."
 
 const messageLauraProgressstart = "Du hast bereits "
-const messageLauraProgressend = "/30 Bilder geschafft."
+const messageLauraProgressend = " geschafft."
 const messageLauraProgres = "Klassifiziere jetzt bitte die nächsten 5 Bilder :)"
 
 const messageLauraNonProgress = "Diese Bilder wären geschafft. Klassifiziere jetzt bitte die nächsten 5 Bilder :)"
 
 const messageLBotProgressstart = "Fortschritt: "
-const messageLBotProgressend = "/30 Bilder"
+const messageLBotProgressend = " "
 const messageLBotProgress = "Klassifiziere jetzt bitte die nächsten 5 Bilder."
 const messageBotNonProgress = "Klassifiziere jetzt bitte die nächsten 5 Bilder."   
 
@@ -155,17 +155,19 @@ function botStart(){
 
 function progressHumanLike() {
     cookieStatus = readCookie("ExperimentCounter")
-    n = cookieStatus.length * 5
-    message = messageLauraProgressstart + n + messageLauraProgressend
+    n = cookieStatus.length * 5;
+    progressString = n + "/25 Bilder";
+    message = messageLauraProgressstart + progressString + messageLauraProgressend
     renderMessageEle(message, "Bot");
     renderMessageEle(messageLauraProgres,"Bot");
     renderNext();
 }
 
 function progressBot() {
-    cookieStatus = readCookie("ExperimentCounter")
-    n = cookieStatus.length * 5
-    message = messageLBotProgressstart + n + messageLBotProgressend
+    cookieStatus = readCookie("ExperimentCounter");
+    n = cookieStatus.length * 5;
+    progressString = n + "/25 Bilder";
+    message = messageLBotProgressstart + progressString + messageLBotProgressend
     renderMessageEle(message, "Bot");
     renderMessageEle(messageLBotProgress,"Bot");
     renderNext();

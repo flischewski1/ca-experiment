@@ -9,7 +9,7 @@ function getRandomGroup () {
 };
 
 // Change URL !
-var myURL = 'http://127.0.0.1:8000/label/guide' + getRandomGroup();
+var myURL = 'https://trashclassification.azurewebsites.netlabel/guide' + getRandomGroup();
 document.getElementById('myUniqueLinkId').href = myURL;
 
 function createCookie(name,value,days) {

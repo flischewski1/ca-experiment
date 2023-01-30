@@ -14,8 +14,7 @@ progress_dict = {
     "1":5,
     "11":10,
     "111":15,
-    "1111":20,
-    "11111":25
+    "1111":20
 }
 
 # start page (initial request)
@@ -55,7 +54,7 @@ def standardLogic(n, request):
     if request.method == "POST": 
         try:
             progress = request.COOKIES.get("ExperimentCounter")
-            if(progress == "111111"): 
+            if(progress == "11111"): 
                 return render(request, "end.html")
             i = progress_dict[progress]
             m = i + 5
@@ -75,7 +74,7 @@ def standardLogic(n, request):
     
 
 def tutorial(request,n):
-    data = Image.objects.all()[30:31]
+    data = Image.objects.all()[25:26]
     form = LabelForm()
     context = {
         'data' : data,

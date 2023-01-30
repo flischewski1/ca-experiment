@@ -6,15 +6,18 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="{% static 'js/app.js' %}" defer></script>
     <script src="{% static 'js/response.js' %}" defer></script>
+    <script src="{% static 'js/cookieMonitoring.js' %}" defer></script>
   </head>
   <body onload = "progressMessage(false, false);">
     
+
+     
 
     <div class="main-text">
       {% for x in data %}
       <img src="{{ x.photo.url }}" alt="Trash" style="width: 30%" />
 
-      <form id="labelform" onsubmit="updateCookie();" action="/label/1/" method="post" onkeydown="return event.key != 'Enter';">
+      <form action="" id ="labelform" onsubmit="updateCookie();" method="post" onkeydown="return event.key != 'Enter';">
         {% csrf_token %}
         <br />
         <input type="hidden" name="imageid" value="{{x.ImageID}}" />
@@ -23,6 +26,7 @@
         </table>
         <br />
         {% endfor %}
+       
         
       </form>
       
