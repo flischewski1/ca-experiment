@@ -5,22 +5,26 @@ from django.db import models
 
 
 label_choices_items = (
-    ('Löffel', 'Löffel'),
+    ('Plastiklöffel', 'Plastiklöffel'),
     ('PET-Flasche','PET-Flasche'), 
-    ('Verpackung', 'Verpackung'), 
-    ('Beutel', 'Beutel'), 
-    ('Deckel','Deckel'), 
-    ('Strohhalm','Strohhalm')
+    ('Glasflasche','Glasflasche'),
+    ('Kein Müllgegestand', 'Kein Müllgegestan'), 
+    ('Plastikbeutel', 'Plastikbeutel'), 
+    ('Flaschendeckel','Flaschendeckel'), 
+    ('Strohhalm','Strohhalm'),
+    ('Verpackung','Verpackung'),
+    ('Tetrapack','Tetrapack'),
+    ('Getränkedose','Getränkedose'),
+
 )
 
 label_choices_material = ()
 
 label_choices_terrain = (
-    ('Gras / Wiese','Gras / Wiese' ),
+    ('Wiese','Wiese' ),
     ('Asphalt', 'Asphalt'), 
-    ('Strand / Sand','Strand / Sand'), 
+    ('Sand','Sand'), 
     ('Öffentliches Verkehrsmittel','Öffentliches Verkehrsmittel')
-
 )
 
 
